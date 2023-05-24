@@ -97,3 +97,6 @@ alias l='ls -CF'
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
+
+export PATH="$HOME/.local/bin:$HOME/platform-tools:$PATH"
+export PYTHONPATH="$HOME/.local"
