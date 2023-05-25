@@ -1,44 +1,33 @@
-## About Tails
+## About tails-mvt
 
-[**Tails**](https://tails.net/) is a portable operating system that protects your privacy and helps you avoid censorship.
+[**Tails-MVT**](https://github.com/ztychr/tails) is a customized version of [Tails](https://tails.net/) that has the [Mobile Verification Toolkit](https://github.com/mvt-project/mvt) preinstalled and working out of the box.
 
-[![Drawing of a Tails stick that is marked to be pluged into a labtop](https://tails.net/index/laptop.svg)](https://tails.net/)
-- Tails uses the Tor network to protect your privacy online and help you avoid censorship. Enjoy the Internet like it should be.
-- Shut down the computer and start on your Tails USB stick instead of starting on Windows, macOS, or Linux. Tails leaves no trace on the computer when shut down.
-- Tails includes a selection of applications to work on sensitive documents and communicate securely. Everything in Tails is ready-to-use and has safe defaults.
-- You can download Tails for free and independent security researchers can verify our work. Tails is based on Debian GNU/Linux.
+### Setup
+To use [Tails-MVT](https://github.com/ztychr/tails), download the latest release under releases, or build the image from source. To build [tails-mvt](https://github.com/ztychr/tails) from source, see [Building a Tails image](https://tails.boum.org/contribute/build/).
 
-[Learn learn how Tails works](https://tails.net/about)
+#### Creating an installation media
+After obtaining the image, flash it to a USB drive or SD card in order to create a bootable media. To do so, use your preferred image flashing utility. If flashing from Linux, you can use [balenaEtcher](https://etcher.balena.io/), `gnome-disk-utility` or `dd` as described in [Install Tails from Linux](https://tails.boum.org/install/linux/index.en.html). If flashing from Windows or macOS, you can use [balenaEtcher](https://etcher.balena.io/) as described in [Install Tails from Windows](https://tails.boum.org/install/windows/index.en.html) and [Install Tails from Windows](https://tails.boum.org/install/mac/index.en.html).
 
+#### Booting tails
+Once the media has been flashed, insert it into the laptop from which the analysis shall be conducted. Press f12 (may vary from manufactorer) in order to select the USB media as a boot option. You may need to disable secure boot and enable Legacy mode in the BIOS settings. Once the image has booted, press **Start Tails**.
 
-### How to contribute to Tails
+### Analysing Android devices
 
-There are many ways [you can contribute to Tails](https://tails.net/contribute/). No effort is too small and whatever you bring to this community will be appreciated.
+#### Preparing the Android device
+To analyze an Android device, the developer options and USB debugging need to be enabled. On the device, head to the **Settings** -> **About phone** and press the build number several times. Once the developer options are enabled, enable USB Debugging from within **Settings** -> **System** -> **Developer options** and toggle **USB debugging**. Once the Desktop is showing, proceed to the next step.
 
-Find out how you can make a difference in Tails: https://tails.net/contribute/.
+#### Perform analysis
+To analyse your device, connect it to the laptop with compatible cable of good quality. Make sure it is unlocked before starting the analysis. Press the Windows or Super button on the keyboard and search for terminal or selt it from **Applications** -> **Utilities** -> **Terminal**. Once the terminal is open, `mvt-android check-adb`. 
 
-### How to get started with GitLab
+A prompt will appear on the Android device asking whether to trust this PC. Toggle **Always allow from this computer** and press **Allow**.
 
-https://tails.net/contribute/working_together/GitLab/
+Next, a prompt will show asking whether to allow a full backup. Press **Back up my data**.
+The analysis will now run and match the indicators of compromised provided by [Mobile Verification Toolkit](https://github.com/mvt-project/mvt).
 
-### How to transition to GitLab
+**IMPORTANT**
+Not finding any indications of compromise does **NOT** mean the device is not infected. It just means that the public indicators of compromise was not matched with stored data on your phone. The indicators are derived from forensic work and publicly available. This means the the spyware authors have access to them as well, and can rule them out of future infections.
 
-https://tails.net/contribute/working_together/GitLab/transition/
+#### Debugging
+You may run into an error stating **Device is busy, maybe run `adb kill-server` and try again**. Type `killall adb` and try again. If the problem persists. Try unplugging the phone and try again. You may also try the command `adb kill-server`, however we found that `killall adb` works in the majority of cases.
 
-###  License and source code distribution
-**Tails** is [Free Software](https://www.gnu.org/philosophy/free-sw.html): you can download, use, and share it with no restrictions.
-
- <a href="https://tails.net/doc/about/license/"><img alt="Tails is Free Software" src="https://tails.net/index/gift.svg" width="560"/>
-
-The Tails source code is released under the GNU/GPL (version 3 or above) and is Copyright (C) Tails developers tails@boum.org.
-Any exception to this rule is documented either [here](https://tails.net/doc/about/license/) or in the affected source file.
-However, Tails includes non-free firmware in order to work on as much hardware as possible.
-
-
-### Contact
-
-email and mailing lists: https://tails.net/about/contact
-
-XMPP: tails@chat.disroot.org and tails-dev@chat.disroot.org
-
-[![Tails](https://tails.net/contribute/how/promote/material/logo/tails-logo-flat.svg)](https://tails.net)
+### Analysing iOS devices
