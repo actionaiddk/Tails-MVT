@@ -22,10 +22,10 @@ To analyse your device, connect it to the laptop with a compatible cable. A cabl
 A prompt will appear on the Android device asking whether to trust this PC. Toggle **Always allow from this computer** and press **Allow**.
 
 Next, a prompt will show asking whether to allow a full backup. Press **Back up my data**.
-The analysis will now run and match the indicators of compromised provided by [Mobile Verification Toolkit](https://github.com/mvt-project/mvt).
+The analysis will now run and analyze the data with the indicators of compromised provided by [Mobile Verification Toolkit](https://github.com/mvt-project/mvt).
 
 #### Debugging
-You may run into an error stating **Device is busy, maybe run `adb kill-server` and try again**. Type `killall adb` and try again. If the problem persists. Try unplugging the phone and try again. You may also try the command `adb kill-server`, however we found that `killall adb` works in the majority of cases.
+You may run into an error stating **Device is busy, maybe run `adb kill-server` and try again**. Type `killall adb` and try again. If the problem persists. Try unplugging the phone and redoing the steps again. You may also try the command `adb kill-server`, however we found that `killall adb` works in the majority of cases.
 
 ### Analysing iOS devices
 
@@ -57,6 +57,9 @@ To decrypt the backup, type the following command and replace <password> with th
  To check the backup, run the following command
   
  `mvt-ios check-backup --output ios/results ios/backup-decrypted`
+
+The analysis will now run and analyze the data with the indicators of compromised provided by [Mobile V\
+erification Toolkit](https://github.com/mvt-project/mvt).
 
 ### Update indicators of compromise
 To update the indicators of compromise, make sure the laptop is online through either WiFi or cabled connection. Once connected, a window with the title **Tor Connection** will appear. Toggle **Connect to Tor automatically** and press **Connect to Tor**. Once the connection is established, open a terminal and type `torify mvt-android download-iocs`and `torify mvt-ios download-iocs`.
