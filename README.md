@@ -42,7 +42,9 @@ ios/
 ```
 
 #### Create backup
-Now connect your iOS device with a compatible cable and make sure it is unlocked. In the terminal type `idevicebackup2 -i encryption on`. A prompt on the iOS device will ask you for a password. Enter a password of your selection and make sure to remember it. If the password is already set previously, make sure you have the password ready. If the password is set but you don't know it, you may try to reset it by following the following steps described in the [MVT documentation](https://docs.mvt.re/en/latest/ios/backup/libimobiledevice/).
+Now connect your iOS device with a compatible cable and make sure it is unlocked. A prompt on the iOS device will show asking whether to trust this computer. Press **Trust**.
+
+In the terminal type `idevicebackup2 -i encryption on`. You will be asked to enter a new backup password. Enter a password of your selection and make sure to remember it. If the password is already set previously, make sure you have the password ready. If the password is set but you don't know it, you may try to reset it by following the following steps described in the [MVT documentation](https://docs.mvt.re/en/latest/ios/backup/libimobiledevice/).
 
 To create a backup, enter the following command in the terminal:
 
@@ -68,3 +70,4 @@ Note that the indicators of compromise are reset for every reboot and will need 
 
 ### **IMPORTANT** ### 
 Not finding any indications of compromise does **NOT** mean the device is not infected. It just means that the public indicators of compromise was not matched with stored data on your phone. The indicators are derived from forensic work and publicly available. This means the the spyware authors have access to them as well, and can rule them out of future infections.
+    
