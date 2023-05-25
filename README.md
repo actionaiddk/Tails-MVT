@@ -1,33 +1,67 @@
-## About tails-mvt
+## About Tails-MVT
 
 [**Tails-MVT**](https://github.com/ztychr/tails) is a customized version of [Tails](https://tails.net/) that has the [Mobile Verification Toolkit](https://github.com/mvt-project/mvt) preinstalled and working out of the box.
 
 ### Setup
-To use [Tails-MVT](https://github.com/ztychr/tails), download the latest release under releases, or build the image from source. To build [tails-mvt](https://github.com/ztychr/tails) from source, see [Building a Tails image](https://tails.boum.org/contribute/build/).
+To use [Tails-MVT](https://github.com/ztychr/tails), download the latest release under releases, or build the image from source. To build [Tails-MVT](https://github.com/ztychr/tails) from source, see [Building a Tails image](https://tails.boum.org/contribute/build/).
 
 #### Creating an installation media
-After obtaining the image, flash it to a USB drive or SD card in order to create a bootable media. To do so, use your preferred image flashing utility. If flashing from Linux, you can use [balenaEtcher](https://etcher.balena.io/), `gnome-disk-utility` or `dd` as described in [Install Tails from Linux](https://tails.boum.org/install/linux/index.en.html). If flashing from Windows or macOS, you can use [balenaEtcher](https://etcher.balena.io/) as described in [Install Tails from Windows](https://tails.boum.org/install/windows/index.en.html) and [Install Tails from Windows](https://tails.boum.org/install/mac/index.en.html).
+After obtaining the image, flash it to a USB drive or SD card in order to create a bootable media. To do so, use your preferred image flashing utility. If flashing from Linux, you can use [balenaEtcher](https://etcher.balena.io/), `gnome-disk-utility` or `dd` as described in [Install Tails from Linux](https://tails.boum.org/install/linux/index.en.html). If flashing from Windows or macOS, you can use [balenaEtcher](https://etcher.balena.io/) as described in [Install Tails from Windows](https://tails.boum.org/install/windows/index.en.html) and [Install Tails from macOS](https://tails.boum.org/install/mac/index.en.html).
 
-#### Booting tails
-Once the media has been flashed, insert it into the laptop from which the analysis shall be conducted. Press f12 (may vary from manufactorer) in order to select the USB media as a boot option. You may need to disable secure boot and enable Legacy mode in the BIOS settings. Once the image has booted, press **Start Tails**.
+#### Booting Tails-MVT
+Once the image has been flashed to the media, insert it into the laptop from which the analysis shall be conducted. Press **f12** during boot (may vary from manufactorer) in order to select the USB media as a boot option. You may need to disable secure boot and enable Legacy mode in the BIOS settings. Once the image has booted, press **Start Tails**.
 
 ### Analysing Android devices
 
 #### Preparing the Android device
-To analyze an Android device, the developer options and USB debugging need to be enabled. On the device, head to the **Settings** -> **About phone** and press the build number several times. Once the developer options are enabled, enable USB Debugging from within **Settings** -> **System** -> **Developer options** and toggle **USB debugging**. Once the Desktop is showing, proceed to the next step.
+To analyze an Android device, the **developer options** and **USB debugging** need to be enabled. On the device, head to the **Settings** -> **About phone** and press the build number several times. Once the developer options are enabled, enable USB Debugging from within **Settings** -> **System** -> **Developer options** and toggle **USB debugging**.
 
 #### Perform analysis
-To analyse your device, connect it to the laptop with compatible cable of good quality. Make sure it is unlocked before starting the analysis. Press the Windows or Super button on the keyboard and search for terminal or selt it from **Applications** -> **Utilities** -> **Terminal**. Once the terminal is open, `mvt-android check-adb`. 
+To analyse your device, connect it to the laptop with a compatible cable. A cable of good quality is advised. Make the phone is turned on and unlocked Press the Windows or Super button on the keyboard and search for terminal or select it from the menu in the upper left corner: **Applications** -> **Utilities** -> **Terminal**. Once the terminal is open, type `mvt-android check-adb` and hit enter.
 
 A prompt will appear on the Android device asking whether to trust this PC. Toggle **Always allow from this computer** and press **Allow**.
 
 Next, a prompt will show asking whether to allow a full backup. Press **Back up my data**.
 The analysis will now run and match the indicators of compromised provided by [Mobile Verification Toolkit](https://github.com/mvt-project/mvt).
 
-**IMPORTANT**
-Not finding any indications of compromise does **NOT** mean the device is not infected. It just means that the public indicators of compromise was not matched with stored data on your phone. The indicators are derived from forensic work and publicly available. This means the the spyware authors have access to them as well, and can rule them out of future infections.
-
 #### Debugging
 You may run into an error stating **Device is busy, maybe run `adb kill-server` and try again**. Type `killall adb` and try again. If the problem persists. Try unplugging the phone and try again. You may also try the command `adb kill-server`, however we found that `killall adb` works in the majority of cases.
 
 ### Analysing iOS devices
+
+#### Preparing folders
+To analyse an iOS device, create a folder structure according to the one listed below. It can be done through the File Explorer found under **Applications** -> **Accessories** -> **Files** or by opening a terminal and typing `mkdir -p ios/backup ios/backup-decrypted ios/result`.
+
+To open a terminal, press the Windows or Super button on the keyboard and search for terminal or select it from **Applications** -> **Utilities** -> **Terminal**
+
+```
+ios/
+├── backup
+├── backup-decrypted
+└── result
+```
+
+#### Create backup
+Now connect your iOS device with a compatible cable and make sure it is unlocked. In the terminal type `idevicebackup2 -i encryption on`. A prompt on the iOS device will ask you for a password. Enter a password of your selection and make sure to remember it. If the password is already set previously, make sure you have the password ready. If the password is set but you don't know it, you may try to reset it by following the following steps described in the [MVT documentation](https://docs.mvt.re/en/latest/ios/backup/libimobiledevice/).
+
+To create a backup, enter the following command in the terminal:
+
+`idevicebackup2 backup --full ios/backup`
+
+#### Decrypt backup
+To decrypt the backup, type the following command and replace <password> with the decryption password for you device backup. The <long string of numbers> will vary and you may autocomplete the command by pressing Tab on the keyboard.
+  
+`mvt-ios decrypt-backup -p <password> -d ios/backup-decrypted ios-analysis/backup/<long string of numbers>`
+
+#### Perform analysis
+ To check the backup, run the following command
+  
+ `mvt-ios check-backup --output ios/results ios/backup-decrypted`
+
+### Update indicators of compromise
+To update the indicators of compromise, make sure the laptop is online through either WiFi or cabled connection. Once connected, a window with the title **Tor Connection** will appear. Toggle **Connect to Tor automatically** and press **Connect to Tor**. Once the connection is established, open a terminal and type `torify mvt-android download-iocs`and `torify mvt-ios download-iocs`.
+
+Note that the indicators of compromise are reset for every reboot and will need updating again. We try to release a new image when new indicators are published to support offline complete offline analysis.
+
+### **IMPORTANT** ### 
+Not finding any indications of compromise does **NOT** mean the device is not infected. It just means that the public indicators of compromise was not matched with stored data on your phone. The indicators are derived from forensic work and publicly available. This means the the spyware authors have access to them as well, and can rule them out of future infections.
