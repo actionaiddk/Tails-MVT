@@ -1,15 +1,15 @@
 ## About Tails-MVT
 
-[**Tails-MVT**](https://github.com/ztychr/tails) is a customized version of [Tails](https://tails.net/) that has the [Mobile Verification Toolkit](https://github.com/mvt-project/mvt) preinstalled and working out of the box.
+[**Tails-MVT**](https://github.com/ztychr/tails) is a customized version of [Tails](https://tails.net/) that has the [Mobile Verification Toolkit](https://github.com/mvt-project/mvt) preinstalled and working out of the box. Tails-MVT is meant for non-advanced users. If you have a technical background, you may want to setup [MVT](https://github.com/mvt-project/mvt) yourself and follow the official [MVT Documentation](https://docs.mvt.re/en/latest/).
 
 ### Setup
 To use [Tails-MVT](https://github.com/ztychr/tails), download the latest release under releases, or build the image from source. To build [Tails-MVT](https://github.com/ztychr/tails) from source, see [Building a Tails image](https://tails.boum.org/contribute/build/).
 
 #### Creating an installation media
-After obtaining the image, flash it to a USB drive or SD card in order to create a bootable media. To do so, use your preferred image flashing utility. If flashing from Linux, you can use [balenaEtcher](https://etcher.balena.io/), `gnome-disk-utility` or `dd` as described in [Install Tails from Linux](https://tails.boum.org/install/linux/index.en.html). If flashing from Windows or macOS, you can use [balenaEtcher](https://etcher.balena.io/) as described in [Install Tails from Windows](https://tails.boum.org/install/windows/index.en.html) and [Install Tails from macOS](https://tails.boum.org/install/mac/index.en.html).
+After obtaining the image, flash it to a USB drive or SD card in order to create a bootable media. To do so We recommend using [balenaEtcher](https://etcher.balena.io/). If flashing from Linux, you can use [balenaEtcher](https://etcher.balena.io/), `gnome-disk-utility` or `dd` as described in [Install Tails from Linux](https://tails.boum.org/install/linux/index.en.html). If flashing from Windows or macOS, use can use [balenaEtcher](https://etcher.balena.io/) as described in [Install Tails from Windows](https://tails.boum.org/install/windows/index.en.html) and [Install Tails from macOS](https://tails.boum.org/install/mac/index.en.html).
 
 #### Booting Tails-MVT
-Once the image has been flashed to the media, insert it into the laptop from which the analysis shall be conducted. Press **f12** during boot (may vary from manufactorer) in order to select the USB media as a boot option. You may need to disable secure boot and enable Legacy mode in the BIOS settings. Once the image has booted, press **Start Tails**.
+Once the image has been flashed to the media, insert it into the laptop from which the analysis shall be conducted. Press **f12** during boot (may vary from manufactorer) in order to select the USB media as a boot option. You may need to disable secure boot and, or enable legacy mode in the BIOS settings. Once the image has booted, press **Start Tails**.
 
 ### Analysing Android devices
 
