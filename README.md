@@ -1,6 +1,6 @@
 ## About Tails-MVT
 
-[**Tails-MVT**](https://github.com/ztychr/tails) is a customized version of [Tails](https://tails.net/) that has the [Mobile Verification Toolkit](https://github.com/mvt-project/mvt) preinstalled and working out of the box. Tails-MVT is meant for non-advanced users. If you have a technical background, you may want to setup [MVT](https://github.com/mvt-project/mvt) yourself and follow the official [MVT Documentation](https://docs.mvt.re/en/latest/).
+[**Tails-MVT**](https://github.com/ztychr/tails) is a customised version of [Tails](https://tails.net/) that has the [Mobile Verification Toolkit](https://github.com/mvt-project/mvt) preinstalled and working out of the box. Tails-MVT is meant for non-advanced users. If you have a technical background, you may want to setup [MVT](https://github.com/mvt-project/mvt) yourself and follow the official [MVT Documentation](https://docs.mvt.re/en/latest/).
 
 #### ⚠️ **IMPORTANT** ⚠️ ####
 Not finding any indications of compromise does **NOT** mean your device is not infected. It just means that the public indicators of compromise was not matched with data extracted from your phone. The indicators are derived from forensic work and publicly available. This means the the spyware authors have access to them as well, and can rule them out of future spyware.
@@ -17,7 +17,7 @@ Once the image has been flashed to the media, insert it into the laptop from whi
 ### 2. Analyzing Android devices
 
 #### 2.1 Preparing the Android device
-To analyze an Android device, the **developer options** and **USB debugging** need to be enabled. On the device, head to the **Settings** -> **About phone** and press the build number several times. Once the developer options are enabled, enable USB Debugging from within **Settings** -> **System** -> **Developer options** and toggle **USB debugging**.
+To analyse an Android device, the **developer options** and **USB debugging** need to be enabled. On the device, head to the **Settings** -> **About phone** and press the build number several times. Once the developer options are enabled, enable USB Debugging from within **Settings** -> **System** -> **Developer options** and toggle **USB debugging**.
 
 #### 2.2 Perform analysis
 To analyse your device, connect it to the laptop with a compatible cable. A cable of good quality is advised. Make the phone is turned on and unlocked Press the Windows or Super button on the keyboard and search for terminal or select it from the menu in the upper left corner: **Applications** -> **Utilities** -> **Terminal**. Once the terminal is open, type `mvt-android check-adb` and hit enter.
@@ -25,7 +25,7 @@ To analyse your device, connect it to the laptop with a compatible cable. A cabl
 A prompt will appear on the Android device asking whether to trust this PC. Toggle **Always allow from this computer** and press **Allow**.
 
 Next, a prompt will show asking whether to allow a full backup. Press **Back up my data**.
-The analysis will now run and analyze the data with the indicators of compromised provided by [Mobile Verification Toolkit](https://github.com/mvt-project/mvt).
+The analysis will now run and analyse the data with the indicators of compromised provided by [Mobile Verification Toolkit](https://github.com/mvt-project/mvt).
 
 #### 2.3 Error handling
 You may run into an error stating **Device is busy, maybe run `adb kill-server` and try again**. Type `killall adb` and try again. If the problem persists. Try unplugging the phone and redoing the steps again. You may also try the command `adb kill-server`, however we found that `killall adb` works in the majority of cases.
@@ -63,7 +63,7 @@ To decrypt the backup, type the following command and replace <password> with th
   
  `mvt-ios check-backup --output ios/results ios/backup-decrypted`
 
-The analysis will now run and analyze the data with the indicators of compromised provided by [Mobile V\
+The analysis will now run and analyse the data with the indicators of compromised provided by [Mobile V\
 erification Toolkit](https://github.com/mvt-project/mvt).
 
 ### 4. Update indicators of compromise
