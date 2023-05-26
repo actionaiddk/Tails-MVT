@@ -3,7 +3,7 @@
 [**Tails-MVT**](https://github.com/ztychr/tails) is a customised version of [Tails](https://tails.net/) that has the [Mobile Verification Toolkit](https://github.com/mvt-project/mvt) preinstalled and working out of the box. Tails-MVT is meant for non-advanced users. If you have a technical background, you may want to setup [MVT](https://github.com/mvt-project/mvt) yourself and follow the official [MVT Documentation](https://docs.mvt.re/en/latest/).
 
 #### ⚠️ **IMPORTANT** ⚠️ ####
-Not finding any indications of compromise does **NOT** mean your device is not infected. It just means that the public indicators of compromise was not matched with data extracted from your phone. The indicators are derived from forensic work and publicly available. This means the the spyware authors have access to them as well, and can rule them out of future spyware.
+Not finding any indications of compromise does **NOT** mean your device is not infected. It just means that the public indicators of compromise was not matched with data extracted from your phone. The indicators are derived from forensic work and they are publicly available. This means the the spyware authors have access to them as well, and can rule them out of future spyware and infections.
 
 ### 1. Setup
 To use [Tails-MVT](https://github.com/ztychr/tails), download the latest release under releases or build the image from source. To build [Tails-MVT](https://github.com/ztychr/tails) from source, see [Building a Tails image](https://tails.boum.org/contribute/build/).
@@ -47,14 +47,14 @@ ios/
 #### 3.2 Create backup
 Now connect your iOS device with a compatible cable and make sure it is unlocked. A prompt on the iOS device will show asking whether to trust this computer. Press **Trust**.
 
-In the terminal type `idevicebackup2 -i encryption on`. You will be asked to enter a new backup password. Enter a password of your selection and make sure to remember it. If the password is already set previously, make sure you have the password ready. If the password is set but you don't know it, you may try to reset it by following the following steps described in the [MVT documentation](https://docs.mvt.re/en/latest/ios/backup/libimobiledevice/).
+In the terminal type `idevicebackup2 -i encryption on`. You will be asked to enter a new backup password. Enter a password of your selection and make sure to remember it. If the password has previously been set, make sure you have the password ready. If the password is set but you don't know it, you may try to reset it by following the following steps described in the [MVT documentation](https://docs.mvt.re/en/latest/ios/backup/libimobiledevice/).
 
 To create a backup, enter the following command in the terminal:
 
 `idevicebackup2 backup --full ios/backup`
 
 #### 3.3 Decrypt backup
-To decrypt the backup, type the following command and replace <password> with the decryption password for you device backup. The <long string of numbers> will vary and you may autocomplete the command by pressing Tab on the keyboard.
+To decrypt the backup, type the following command and replace <password> with the decryption password for you device backup. The `<long string of numbers>` will vary. You may press **Tab** to autocomplete after typing the first characters of the string.
   
 `mvt-ios decrypt-backup -p <password> -d ios/backup-decrypted ios-analysis/backup/<long string of numbers>`
 
