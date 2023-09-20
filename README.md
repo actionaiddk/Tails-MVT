@@ -70,7 +70,7 @@ erification Toolkit](https://github.com/mvt-project/mvt).
 
 
 #### 3.5 Error handling <a name="error-ios"></a>
-You may run into where the backup of the iOS device takes up more space than available in the file system. To circumvent this issue, you must flash the Tails-MVT image to a larger media or plug in an external drive after booting, to store the backup. The external will mount itself under `/media/amnesia/<device name>`. Before running the commands in step 2.1, 2.2, 2.3 and 2.4, write the following command to change your working directory to the external drive.
+You may run into where the backup of the iOS device takes up more space than available in the file system. To circumvent this issue, you must flash the Tails-MVT image to a larger media or plug in an external drive after booting, to store the backup. The external will mount itself under `/media/amnesia/<device name>`. Before running the commands in step 3.1, 3.2, 3.3 and 3.4, write the following command to change your working directory to the external drive.
 
 ```
 cd /media/amnesia/<device name>
